@@ -1047,7 +1047,12 @@ if(id === 'proof') loadPosts();
 if(id === 'admin') loadAdmin();
 
 }
-
+links.forEach(a => {
+a.classList.toggle(
+'on',
+a.dataset.page === id
+);
+});
    links.forEach(a =>
     a.classList.toggle(
       'on',
@@ -1081,42 +1086,16 @@ if(id === 'admin') loadAdmin();
    MENU CLICK
 ========================= */
 
-links.forEach(a => {
+  links.forEach(a => {
 
-  a.onclick = async () => {
-
-    if(a.dataset.page === 'admin'){
-
-      try{
-
-        const m = await fetch('/api/admin/me')
-          .then(r => r.json());
-
-        if(!m.authenticated){
-
-          $('#loginModal')
-            .classList.add('show');
-
-          return;
-
-        }
-
-      }catch(e){
-
-        alert('관리자 서버에 연결할 수 없습니다.');
-
-        return;
-
-      }
-
-    }
+  a.onclick = () => {
 
     show(a.dataset.page);
 
   };
 
 });
-
+  
 /* =========================
    JOIN
 ========================= */
