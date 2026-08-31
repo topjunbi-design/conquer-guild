@@ -434,9 +434,20 @@ textarea{
   }
 
   .menu{
-    order:2;
-    width:100%;
+  order:2;
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:4px;
+  overflow:visible;
+}
 
+.menu a{
+  padding:8px 3px;
+  text-align:center;
+  font-size:11px;
+}
+  
     justify-content:flex-start;
   }
 
