@@ -4,14 +4,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>CONQUER | 컨커르</title>
 
 <style>
 :root{
   --bg:#070707;
   --panel:#111;
+  --panel2:#161311;
   --line:#2d2824;
   --red:#b92f29;
+  --red2:#70201b;
   --gold:#c9a35f;
   --text:#eee9e1;
   --muted:#99938c;
@@ -33,7 +36,7 @@ body{
 }
 
 /* =========================
-   상단 메뉴
+   TOP NAV
 ========================= */
 
 .side{
@@ -41,14 +44,20 @@ body{
   z-index:100;
   top:0;
   left:0;
-  width:100%;
-  background:rgba(7,7,7,.97);
+  right:0;
+  height:72px;
+  background:rgba(7,7,7,.94);
+  backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line);
-  padding:10px 20px;
+
+  display:flex;
+  align-items:center;
+  padding:0 28px;
 }
 
 .logo{
-  text-align:center;
+  min-width:210px;
+  text-align:left;
   font:700 25px Georgia,serif;
   letter-spacing:5px;
   color:#e4c785;
@@ -64,14 +73,18 @@ body{
 
 .menu{
   display:flex;
-  justify-content:center;
   align-items:center;
-  gap:5px;
-  margin-top:9px;
+  gap:3px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+
+.menu::-webkit-scrollbar{
+  display:none;
 }
 
 .menu a{
-  padding:10px 14px;
+  padding:11px 13px;
   border:1px solid transparent;
   border-radius:3px;
   color:#aaa39b;
@@ -88,35 +101,38 @@ body{
 }
 
 .join{
-  position:absolute;
-  right:20px;
-  top:37px;
+  margin-left:auto;
+  white-space:nowrap;
   background:linear-gradient(#a9352e,#651b17);
   border:1px solid #77342e;
   color:#fff;
-  padding:10px 15px;
+  padding:11px 17px;
   border-radius:3px;
   font-weight:bold;
   cursor:pointer;
 }
 
 /* =========================
-   본문
+   MAIN
 ========================= */
 
 main{
-  padding-top:91px;
+  margin:0;
+  padding-top:72px;
 }
 
 /* =========================
-   메인
+   HERO
 ========================= */
 
 .hero{
-  min-height:calc(100vh - 91px);
+  min-height:calc(100vh - 72px);
+
   display:flex;
   align-items:center;
+
   padding:80px 8%;
+
   position:relative;
   overflow:hidden;
 
@@ -124,19 +140,33 @@ main{
     linear-gradient(
       90deg,
       #050505 0%,
-      rgba(5,5,5,.88) 38%,
-      rgba(5,5,5,.55) 70%,
-      rgba(5,5,5,.75) 100%
+      rgba(5,5,5,.92) 35%,
+      rgba(5,5,5,.58) 65%,
+      rgba(5,5,5,.8) 100%
     ),
     url("queen-reference.png") center/cover no-repeat;
 
   border-bottom:1px solid var(--line);
 }
 
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0 0;
+  height:180px;
+
+  background:linear-gradient(
+    transparent,
+    var(--bg)
+  );
+
+  pointer-events:none;
+}
+
 .hero-content{
   position:relative;
   z-index:2;
-  max-width:780px;
+  max-width:760px;
 }
 
 .eyebrow{
@@ -162,14 +192,20 @@ main{
   font-size:16px;
 }
 
+.hero-buttons{
+  margin-top:30px;
+}
+
 .btn,
 .submit{
   display:inline-block;
   padding:13px 20px;
   margin:8px 6px 0 0;
+
   border:1px solid #71312b;
   background:#8c2924;
   color:#fff;
+
   border-radius:3px;
   cursor:pointer;
   font-weight:bold;
@@ -181,15 +217,16 @@ main{
 }
 
 /* =========================
-   섹션
+   SECTIONS
 ========================= */
 
 .page{
   display:block;
-  padding:90px 8%;
+  padding:100px 8%;
   min-height:70vh;
+
   border-bottom:1px solid var(--line);
-  scroll-margin-top:110px;
+  scroll-margin-top:72px;
 }
 
 .page:nth-child(even){
@@ -208,7 +245,7 @@ main{
 }
 
 /* =========================
-   카드
+   CARDS
 ========================= */
 
 .cards{
@@ -222,10 +259,17 @@ main{
   border:1px solid var(--line);
   padding:25px;
   border-radius:4px;
+  transition:.2s;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  border-color:#594037;
 }
 
 .card h3{
   margin-top:0;
+  color:#eee;
 }
 
 .card p,
@@ -235,7 +279,7 @@ main{
 }
 
 /* =========================
-   표
+   BOSS TABLE
 ========================= */
 
 .table{
@@ -263,7 +307,7 @@ th{
 }
 
 /* =========================
-   알림
+   NOTICE
 ========================= */
 
 .notice{
@@ -271,20 +315,26 @@ th{
   border:1px solid var(--line);
   background:#0f0f0f;
   color:#bbb;
+  margin-bottom:15px;
 }
 
 /* =========================
-   팝업
+   MODAL
 ========================= */
 
 .modal{
   display:none;
+
   position:fixed;
   inset:0;
+
   background:#000c;
+
   z-index:200;
+
   align-items:center;
   justify-content:center;
+
   padding:20px;
 }
 
@@ -296,8 +346,11 @@ th{
   width:min(560px,100%);
   max-height:90vh;
   overflow:auto;
+
   background:#111;
+
   border:1px solid #63452f;
+
   padding:27px;
 }
 
@@ -316,11 +369,16 @@ label{
 input,
 textarea{
   width:100%;
+
   margin-top:5px;
+
   background:#080808;
   color:white;
+
   border:1px solid #3b3733;
+
   padding:11px;
+
   border-radius:3px;
 }
 
@@ -343,44 +401,51 @@ textarea{
   border-color:#4b4540;
 }
 
-/* =====================================================
-   모바일
-===================================================== */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:850px){
 
   .side{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    padding:8px 8px 7px;
+    height:auto;
+    min-height:62px;
+
+    padding:9px 10px;
+
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:5px;
   }
 
   .logo{
+    min-width:auto;
+    width:100%;
+
+    text-align:center;
+
     font-size:20px;
     letter-spacing:4px;
   }
 
   .logo small{
     font-size:6px;
-    letter-spacing:2px;
   }
 
   .menu{
+    order:2;
     width:100%;
     display:grid;
-    grid-template-columns:repeat(4,minmax(0,1fr));
+    grid-template-columns:repeat(4,1fr);
     gap:4px;
-    margin-top:8px;
+    overflow:visible;
   }
 
   .menu a{
-    width:100%;
-    padding:9px 2px;
+    padding:8px 3px;
     text-align:center;
     font-size:11px;
-    overflow:hidden;
   }
 
   .join{
@@ -388,49 +453,35 @@ textarea{
   }
 
   main{
-    padding-top:111px;
+    padding-top:94px;
   }
 
   .hero{
-    min-height:calc(100vh - 111px);
+    min-height:calc(100vh - 94px);
+
     padding:55px 7%;
+
     background:
       linear-gradient(
         180deg,
-        rgba(5,5,5,.48),
-        rgba(5,5,5,.95)
+        rgba(5,5,5,.55),
+        rgba(5,5,5,.94)
       ),
       url("queen-reference.png") center/cover no-repeat;
   }
 
-  .hero-content{
-    width:100%;
-  }
-
-  .eyebrow{
-    font-size:10px;
-    letter-spacing:4px;
-  }
-
   .hero h1{
-    font-size:48px;
+    font-size:52px;
     letter-spacing:-3px;
-    margin-top:15px;
   }
 
   .hero p{
     font-size:14px;
   }
 
-  .hero .btn{
-    width:100%;
-    margin-right:0;
-  }
-
   .page{
-    padding:70px 7%;
+    padding:75px 7%;
     min-height:auto;
-    scroll-margin-top:115px;
   }
 
   .title{
@@ -441,43 +492,39 @@ textarea{
     grid-template-columns:1fr;
   }
 
-  .card{
-    padding:20px;
-  }
-
   .row{
     grid-template-columns:1fr;
   }
 
+  .card{
+    padding:20px;
+  }
+
+  .btn{
+    width:100%;
+    text-align:center;
+  }
+
 }
 
-/* =====================================================
-   작은 휴대폰
-===================================================== */
+/* =========================
+   SMALL PHONE
+========================= */
 
 @media(max-width:430px){
 
-  .menu a{
-    font-size:10px;
-    padding:8px 1px;
+  .hero h1{
+    font-size:43px;
   }
 
-  main{
-    padding-top:108px;
+  .eyebrow{
+    letter-spacing:4px;
+    font-size:10px;
   }
 
   .hero{
-    min-height:calc(100vh - 108px);
-    padding:45px 6%;
-  }
-
-  .hero h1{
-    font-size:40px;
-    letter-spacing:-2px;
-  }
-
-  .hero p{
-    font-size:13px;
+    padding-left:6%;
+    padding-right:6%;
   }
 
   .page{
@@ -493,7 +540,7 @@ textarea{
 <body>
 
 <!-- =========================
-     상단 메뉴
+     NAV
 ========================= -->
 
 <aside class="side">
@@ -510,11 +557,11 @@ textarea{
 
 <a data-page="guild">길드 소개</a>
 
-<a data-page="recruit">모집</a>
+<a data-page="recruit">길드원 모집</a>
 
-<a data-page="proof">인증</a>
+<a data-page="proof">인증게시판</a>
 
-<a data-page="boss">보스</a>
+<a data-page="boss">보스 시간표</a>
 
 <a data-page="members">길드원</a>
 
@@ -534,7 +581,7 @@ textarea{
 <main>
 
 <!-- =========================
-     메인
+     HOME
 ========================= -->
 
 <section id="home" class="hero">
@@ -547,8 +594,8 @@ textarea{
 </div>
 
 <h1>
-  최악의 나쁜놈들이<br>
-  <span>최강</span>이 된다.
+  컨커르 길드입니다<br>
+  <span>환영합니다</span>
 </h1>
 
 <p>
@@ -557,13 +604,17 @@ textarea{
   함께 싸우고 성장할 전사를 기다립니다.
 </p>
 
-<button class="btn" onclick="openJoin()">
-  ⚔ 가입 신청
-</button>
+<div class="hero-buttons">
 
-<button class="btn dark" onclick="show('guild')">
-  길드 알아보기
-</button>
+  <button class="btn" onclick="openJoin()">
+    ⚔ 가입 신청
+  </button>
+
+  <button class="btn dark" onclick="scrollToSection('guild')">
+    길드 알아보기
+  </button>
+
+</div>
 ```
 
   </div>
@@ -571,7 +622,7 @@ textarea{
 </section>
 
 <!-- =========================
-     길드 소개
+     GUILD
 ========================= -->
 
 <section id="guild" class="page">
@@ -617,7 +668,7 @@ textarea{
 </section>
 
 <!-- =========================
-     모집
+     RECRUIT
 ========================= -->
 
 <section id="recruit" class="page">
@@ -653,7 +704,7 @@ textarea{
 </section>
 
 <!-- =========================
-     인증
+     PROOF
 ========================= -->
 
 <section id="proof" class="page">
@@ -671,7 +722,7 @@ textarea{
 </section>
 
 <!-- =========================
-     보스
+     BOSS
 ========================= -->
 
 <section id="boss" class="page">
@@ -745,7 +796,7 @@ textarea{
 </section>
 
 <!-- =========================
-     길드원
+     MEMBERS
 ========================= -->
 
 <section id="members" class="page">
@@ -763,7 +814,7 @@ textarea{
 </section>
 
 <!-- =========================
-     커뮤니티
+     COMMUNITY
 ========================= -->
 
 <section id="community" class="page">
@@ -806,7 +857,7 @@ textarea{
 </section>
 
 <!-- =========================
-     관리자
+     ADMIN
 ========================= -->
 
 <section id="admin" class="page">
@@ -826,7 +877,7 @@ textarea{
 </main>
 
 <!-- =========================
-     가입 신청 팝업
+     JOIN MODAL
 ========================= -->
 
 <div class="modal" id="joinModal">
@@ -889,7 +940,7 @@ textarea{
 </div>
 
 <!-- =========================
-     관리자 로그인
+     LOGIN MODAL
 ========================= -->
 
 <div class="modal" id="loginModal">
@@ -918,7 +969,10 @@ textarea{
   비밀번호
 </label>
 
-<input id="adminPw" type="password">
+<input
+  id="adminPw"
+  type="password"
+>
 
 <button class="submit" onclick="login()">
   로그인
@@ -933,11 +987,36 @@ textarea{
 
 const $ = s => document.querySelector(s);
 
+const pages = [
+  ...document.querySelectorAll('.page')
+];
+
 const links = [
   ...document.querySelectorAll('.menu a')
 ];
 
-/* 메뉴 이동 */
+/* =========================
+   SECTION SCROLL
+========================= */
+
+function scrollToSection(id){
+
+  const el = document.getElementById(id);
+
+  if(el){
+
+    el.scrollIntoView({
+      behavior:'smooth',
+      block:'start'
+    });
+
+  }
+
+}
+
+/* =========================
+   MENU
+========================= */
 
 function show(id){
 
@@ -950,14 +1029,12 @@ function show(id){
     block:'start'
   });
 
-  links.forEach(a => {
-
+  links.forEach(a =>
     a.classList.toggle(
       'on',
       a.dataset.page === id
-    );
-
-  });
+    )
+  );
 
   if(id === 'members') loadMembers();
 
@@ -967,7 +1044,9 @@ function show(id){
 
 }
 
-/* 메뉴 클릭 */
+/* =========================
+   MENU CLICK
+========================= */
 
 links.forEach(a => {
 
@@ -977,9 +1056,8 @@ links.forEach(a => {
 
       try{
 
-        const m = await fetch(
-          '/api/admin/me'
-        ).then(r => r.json());
+        const m = await fetch('/api/admin/me')
+          .then(r => r.json());
 
         if(!m.authenticated){
 
@@ -987,15 +1065,15 @@ links.forEach(a => {
             .classList.add('show');
 
           return;
+
         }
 
       }catch(e){
 
-        alert(
-          '관리자 서버에 연결할 수 없습니다.'
-        );
+        alert('관리자 서버에 연결할 수 없습니다.');
 
         return;
+
       }
 
     }
@@ -1006,7 +1084,9 @@ links.forEach(a => {
 
 });
 
-/* 가입 팝업 */
+/* =========================
+   JOIN
+========================= */
 
 function openJoin(){
 
@@ -1022,7 +1102,9 @@ function closeJoin(){
 
 }
 
-/* 로그인 팝업 */
+/* =========================
+   LOGIN
+========================= */
 
 function closeLogin(){
 
@@ -1031,7 +1113,9 @@ function closeLogin(){
 
 }
 
-/* 가입 신청 */
+/* =========================
+   JOIN SUBMIT
+========================= */
 
 async function submitJoin(){
 
@@ -1086,7 +1170,9 @@ async function submitJoin(){
 
 }
 
-/* 관리자 로그인 */
+/* =========================
+   LOGIN
+========================= */
 
 async function login(){
 
@@ -1133,7 +1219,9 @@ async function login(){
 
 }
 
-/* 길드원 */
+/* =========================
+   MEMBERS
+========================= */
 
 async function loadMembers(){
 
@@ -1176,7 +1264,9 @@ async function loadMembers(){
 
 }
 
-/* 게시판 */
+/* =========================
+   POSTS
+========================= */
 
 async function loadPosts(){
 
@@ -1221,7 +1311,9 @@ async function loadPosts(){
 
 }
 
-/* 관리자 */
+/* =========================
+   ADMIN
+========================= */
 
 async function loadAdmin(){
 
@@ -1240,10 +1332,15 @@ async function loadAdmin(){
           <tr>
 
             <th>닉네임</th>
+
             <th>클래스</th>
+
             <th>전투력</th>
+
             <th>신청일</th>
+
             <th>상태</th>
+
             <th>관리</th>
 
           </tr>
@@ -1319,7 +1416,9 @@ async function loadAdmin(){
 
 }
 
-/* 승인 / 거절 */
+/* =========================
+   DECISION
+========================= */
 
 async function decision(id,status){
 
@@ -1361,7 +1460,9 @@ async function decision(id,status){
 
 }
 
-/* 로그아웃 */
+/* =========================
+   LOGOUT
+========================= */
 
 async function logout(){
 
@@ -1380,7 +1481,9 @@ async function logout(){
 
 }
 
-/* HTML escape */
+/* =========================
+   ESCAPE
+========================= */
 
 function esc(s){
 
@@ -1400,18 +1503,24 @@ function esc(s){
 
 }
 
-/* 팝업 바깥 클릭 */
+/* =========================
+   CLOSE MODAL
+========================= */
 
 window.addEventListener(
   'click',
   e => {
 
     if(e.target === $('#joinModal')){
+
       closeJoin();
+
     }
 
     if(e.target === $('#loginModal')){
+
       closeLogin();
+
     }
 
   }
