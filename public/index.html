@@ -1,27 +1,1529 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CONQUER | 컨커르</title><style>
-:root{--bg:#070707;--panel:#111;--line:#2d2824;--red:#b92f29;--gold:#c9a35f;--text:#eee9e1;--muted:#99938c}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Noto Sans KR",sans-serif}.side{position:fixed;z-index:10;inset:0 auto 0 0;width:225px;background:linear-gradient(180deg,#100d0c,#050505);border-right:1px solid var(--line);padding:28px 17px}.logo{text-align:center;font:700 27px Georgia;letter-spacing:6px;color:#e4c785}.logo small{display:block;font:7px Arial;letter-spacing:3px;color:#8b7653;margin-top:3px}.menu{margin-top:35px;display:grid;gap:6px}.menu a{padding:14px 15px;border:1px solid transparent;border-radius:3px;color:#bdb7af;font-size:13px;cursor:pointer}.menu a:hover,.menu a.on{background:#1a1211;border-color:#4d2c27;color:#fff}.join{position:absolute;bottom:25px;left:17px;right:17px;background:linear-gradient(#a9352e,#651b17);border:1px solid #77342e;color:#fff;padding:13px;border-radius:3px;font-weight:bold;cursor:pointer}main{margin-left:225px;min-height:100vh}.hero{min-height:100vh;display:flex;align-items:center;padding:70px 7%;position:relative;overflow:hidden;background:linear-gradient(90deg,#050505 0%,rgba(5,5,5,.9) 35%,rgba(5,5,5,.35)),url("/queen-reference.png") center/cover}.hero h1{font:700 clamp(48px,7vw,88px)/.95 Georgia;margin:14px 0;letter-spacing:-4px}.hero h1 span{color:var(--red)}.eyebrow{color:#d54a42;letter-spacing:5px;font-size:12px;font-weight:bold}.hero p{line-height:1.9;color:#d0cac1}.page{display:none;padding:65px 7%;min-height:100vh}.page.on{display:block}.title{font:700 38px Georgia;margin:0}.sub{color:var(--muted);margin:8px 0 28px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:linear-gradient(145deg,#171616,#0d0d0d);border:1px solid var(--line);padding:22px;border-radius:4px}.card h3{margin-top:0}.btn,.submit{display:inline-block;padding:12px 18px;margin:8px 6px 0 0;border:1px solid #71312b;background:#8c2924;color:#fff;border-radius:3px;cursor:pointer}.dark{background:#111;border-color:#514941}.table{overflow:auto;border:1px solid var(--line)}table{width:100%;border-collapse:collapse;min-width:700px}th,td{text-align:left;padding:13px;border-bottom:1px solid var(--line);font-size:13px}th{color:var(--gold);background:#151311}.modal{display:none;position:fixed;inset:0;background:#000b;z-index:50;align-items:center;justify-content:center}.modal.show{display:flex}.box{width:min(560px,92%);background:#111;border:1px solid #63452f;padding:27px}.box h2{font:700 28px Georgia;margin-top:0}label{display:block;color:#aaa;font-size:12px;margin-top:10px}input,textarea{width:100%;margin-top:5px;background:#080808;color:white;border:1px solid #3b3733;padding:11px;border-radius:3px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.admin-actions button{padding:7px 10px;border:1px solid #5a332e;background:#7d2722;color:#fff;cursor:pointer}.admin-actions .reject{background:#171717;border-color:#4b4540}.notice{padding:14px;border:1px solid var(--line);background:#0f0f0f;color:#bbb;margin-bottom:15px}@media(max-width:850px){.side{position:sticky;width:100%;height:auto;padding:12px;display:flex;align-items:center;gap:10px}.logo{font-size:19px}.menu{margin:0;display:flex;overflow:auto}.menu a{white-space:nowrap;padding:9px}.join{position:static;white-space:nowrap;width:auto}main{margin:0}.hero{min-height:calc(100vh - 70px);padding:50px 7%}.cards{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
-</style></head><body><aside class="side"><div class="logo">CONQUER<small>ODIN · VALHALLA RISING</small></div><nav class="menu"><a class="on" data-page="home">메인</a><a data-page="guild">길드 소개</a><a data-page="recruit">길드원 모집</a><a data-page="proof">인증게시판</a><a data-page="boss">보스 시간표</a><a data-page="members">길드원</a><a data-page="community">커뮤니티</a><a data-page="admin">🔐 관리자</a></nav><button class="join" onclick="openJoin()">가입 신청</button></aside><main>
-<section id="home" class="hero page on"><div><div class="eyebrow">CONQUER GUILD</div><h1>최악의 나쁜놈들이<br><span>최강</span>이 된다.</h1><p>우리 편에게는 끈끈하게.<br>전장에서는 물러서지 않게.<br>함께 싸우고 성장할 전사를 기다립니다.</p><button class="btn" onclick="openJoin()">⚔ 가입 신청</button><button class="btn dark" onclick="show('boss')">보스 시간표</button></div></section>
-<section id="guild" class="page"><h1 class="title">길드 소개</h1><p class="sub">컨커르는 강함만큼 사람과 함께하는 것을 중요하게 생각합니다.</p><div class="cards"><div class="card"><h3>⚔ 함께 싸우는 길드</h3><p>보스와 전장에서 서로 믿고 움직입니다.</p></div><div class="card"><h3>🔥 함께 성장</h3><p>득템과 성장을 함께 기록하고 공유합니다.</p></div><div class="card"><h3>🩸 확실한 매너</h3><p>길드원에게는 기본적인 존중을 지킵니다.</p></div></div></section>
-<section id="recruit" class="page"><h1 class="title">길드원 모집</h1><p class="sub">컨커르와 오래 함께할 전사를 모집합니다.</p><div class="card"><h3>모집 기준</h3><ul><li>보스 및 길드 활동에 적극적인 분</li><li>길드원 간 기본 매너를 지키는 분</li><li>함께 성장할 의지가 있는 분</li></ul><button class="submit" onclick="openJoin()">가입 신청하기</button></div></section>
-<section id="proof" class="page"><h1 class="title">인증게시판</h1><p class="sub">실제 서버에 저장되는 게시판</p><div id="posts" class="cards"></div></section>
-<section id="boss" class="page"><h1 class="title">보스 시간표</h1><p class="sub">운영진이 관리하는 보스 일정</p><div class="table"><table><tr><th>보스</th><th>주기</th><th>예정 시간</th></tr><tr><td>2챕 요툰하임</td><td>12시간</td><td>관리자 입력</td></tr><tr><td>3챕 니다벨리르</td><td>12시간</td><td>관리자 입력</td></tr><tr><td>4챕 알브하임</td><td>24시간</td><td>관리자 입력</td></tr><tr><td>5챕 무스펠하임</td><td>36시간</td><td>관리자 입력</td></tr><tr><td>6챕 아스가르드</td><td>48시간</td><td>관리자 입력</td></tr><tr><td>7챕 드라우그</td><td>60시간</td><td>관리자 입력</td></tr><tr><td>절대자</td><td>72시간</td><td>관리자 입력</td></tr></table></div></section>
-<section id="members" class="page"><h1 class="title">길드원</h1><p class="sub">승인된 길드원만 표시됩니다.</p><div id="membersList" class="cards"></div></section>
-<section id="community" class="page"><h1 class="title">커뮤니티</h1><p class="sub">컨커르 길드 커뮤니티</p><div class="cards"><div class="card"><h3>💬 오픈톡</h3><p>가입 문의와 공지를 확인하세요.</p></div><div class="card"><h3>🎧 디스코드</h3><p>보스 레이드 실시간 소통.</p></div><div class="card"><h3>🛡 길드 규칙</h3><p>함께 지켜갈 기본 약속.</p></div></div></section>
-<section id="admin" class="page"><h1 class="title">관리자 센터</h1><p class="sub">가입 신청과 게시판을 관리합니다.</p><div id="adminArea"></div></section></main>
-<div class="modal" id="joinModal"><div class="box"><button onclick="closeJoin()" style="float:right;background:none;border:0;color:#aaa;font-size:24px">×</button><h2>CONQUER 가입 신청</h2><div class="row"><div><label>게임 닉네임</label><input id="nick"></div><div><label>클래스</label><input id="cls"></div></div><div class="row"><div><label>전투력</label><input id="power"></div><div><label>주 활동 시간</label><input id="hours"></div></div><label>자기소개</label><textarea id="intro" rows="4"></textarea><button class="submit" onclick="submitJoin()">가입 신청 보내기</button></div></div>
-<div class="modal" id="loginModal"><div class="box"><button onclick="closeLogin()" style="float:right;background:none;border:0;color:#aaa;font-size:24px">×</button><h2>관리자 로그인</h2><label>아이디</label><input id="adminId"><label>비밀번호</label><input id="adminPw" type="password"><button class="submit" onclick="login()">로그인</button></div></div>
+<!doctype html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>CONQUER | 컨커르</title>
+
+<style>
+:root{
+  --bg:#070707;
+  --panel:#111;
+  --panel2:#161311;
+  --line:#2d2824;
+  --red:#b92f29;
+  --red2:#70201b;
+  --gold:#c9a35f;
+  --text:#eee9e1;
+  --muted:#99938c;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,"Noto Sans KR",sans-serif;
+}
+
+/* =========================
+   TOP NAV
+========================= */
+
+.side{
+  position:fixed;
+  z-index:100;
+  top:0;
+  left:0;
+  right:0;
+  height:72px;
+  background:rgba(7,7,7,.94);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+
+  display:flex;
+  align-items:center;
+  padding:0 28px;
+}
+
+.logo{
+  min-width:210px;
+  text-align:left;
+  font:700 25px Georgia,serif;
+  letter-spacing:5px;
+  color:#e4c785;
+}
+
+.logo small{
+  display:block;
+  font:7px Arial,sans-serif;
+  letter-spacing:3px;
+  color:#8b7653;
+  margin-top:3px;
+}
+
+.menu{
+  display:flex;
+  align-items:center;
+  gap:3px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+
+.menu::-webkit-scrollbar{
+  display:none;
+}
+
+.menu a{
+  padding:11px 13px;
+  border:1px solid transparent;
+  border-radius:3px;
+  color:#aaa39b;
+  font-size:13px;
+  white-space:nowrap;
+  cursor:pointer;
+}
+
+.menu a:hover,
+.menu a.on{
+  background:#1a1211;
+  border-color:#4d2c27;
+  color:#fff;
+}
+
+.join{
+  margin-left:auto;
+  white-space:nowrap;
+  background:linear-gradient(#a9352e,#651b17);
+  border:1px solid #77342e;
+  color:#fff;
+  padding:11px 17px;
+  border-radius:3px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+  margin:0;
+  padding-top:72px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  min-height:calc(100vh - 72px);
+
+  display:flex;
+  align-items:center;
+
+  padding:80px 8%;
+
+  position:relative;
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      90deg,
+      #050505 0%,
+      rgba(5,5,5,.92) 35%,
+      rgba(5,5,5,.58) 65%,
+      rgba(5,5,5,.8) 100%
+    ),
+    url("queen-reference.png") center/cover no-repeat;
+
+  border-bottom:1px solid var(--line);
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0 0;
+  height:180px;
+
+  background:linear-gradient(
+    transparent,
+    var(--bg)
+  );
+
+  pointer-events:none;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:760px;
+}
+
+.eyebrow{
+  color:#d54a42;
+  letter-spacing:6px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.hero h1{
+  font:700 clamp(48px,7vw,92px)/.95 Georgia,serif;
+  margin:18px 0 25px;
+  letter-spacing:-5px;
+}
+
+.hero h1 span{
+  color:var(--red);
+}
+
+.hero p{
+  line-height:1.9;
+  color:#d0cac1;
+  font-size:16px;
+}
+
+.hero-buttons{
+  margin-top:30px;
+}
+
+.btn,
+.submit{
+  display:inline-block;
+  padding:13px 20px;
+  margin:8px 6px 0 0;
+
+  border:1px solid #71312b;
+  background:#8c2924;
+  color:#fff;
+
+  border-radius:3px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.btn.dark{
+  background:#111;
+  border-color:#514941;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.page{
+  display:block;
+  padding:100px 8%;
+  min-height:70vh;
+
+  border-bottom:1px solid var(--line);
+  scroll-margin-top:72px;
+}
+
+.page:nth-child(even){
+  background:#090909;
+}
+
+.title{
+  font:700 42px Georgia,serif;
+  margin:0;
+}
+
+.sub{
+  color:var(--muted);
+  margin:10px 0 35px;
+  line-height:1.7;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.card{
+  background:linear-gradient(145deg,#171616,#0d0d0d);
+  border:1px solid var(--line);
+  padding:25px;
+  border-radius:4px;
+  transition:.2s;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  border-color:#594037;
+}
+
+.card h3{
+  margin-top:0;
+  color:#eee;
+}
+
+.card p,
+.card li{
+  color:#aaa39b;
+  line-height:1.8;
+}
+
+/* =========================
+   BOSS TABLE
+========================= */
+
+.table{
+  overflow:auto;
+  border:1px solid var(--line);
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:650px;
+}
+
+th,
+td{
+  text-align:left;
+  padding:14px;
+  border-bottom:1px solid var(--line);
+  font-size:13px;
+}
+
+th{
+  color:var(--gold);
+  background:#151311;
+}
+
+/* =========================
+   NOTICE
+========================= */
+
+.notice{
+  padding:16px;
+  border:1px solid var(--line);
+  background:#0f0f0f;
+  color:#bbb;
+  margin-bottom:15px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+  display:none;
+
+  position:fixed;
+  inset:0;
+
+  background:#000c;
+
+  z-index:200;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.box{
+  width:min(560px,100%);
+  max-height:90vh;
+  overflow:auto;
+
+  background:#111;
+
+  border:1px solid #63452f;
+
+  padding:27px;
+}
+
+.box h2{
+  font:700 28px Georgia,serif;
+  margin-top:0;
+}
+
+label{
+  display:block;
+  color:#aaa;
+  font-size:12px;
+  margin-top:10px;
+}
+
+input,
+textarea{
+  width:100%;
+
+  margin-top:5px;
+
+  background:#080808;
+  color:white;
+
+  border:1px solid #3b3733;
+
+  padding:11px;
+
+  border-radius:3px;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.admin-actions button{
+  padding:7px 10px;
+  border:1px solid #5a332e;
+  background:#7d2722;
+  color:#fff;
+  cursor:pointer;
+}
+
+.admin-actions .reject{
+  background:#171717;
+  border-color:#4b4540;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+  .side{
+    height:auto;
+    min-height:62px;
+
+    padding:9px 10px;
+
+    display:flex;
+    flex-wrap:wrap;
+
+    gap:5px;
+  }
+
+  .logo{
+    min-width:auto;
+    width:100%;
+
+    text-align:center;
+
+    font-size:20px;
+    letter-spacing:4px;
+  }
+
+  .logo small{
+    font-size:6px;
+  }
+
+  .menu{
+    order:2;
+    width:100%;
+
+    justify-content:flex-start;
+  }
+
+  .menu a{
+    padding:8px 10px;
+    font-size:12px;
+  }
+
+  .join{
+    display:none;
+  }
+
+  main{
+    padding-top:94px;
+  }
+
+  .hero{
+    min-height:calc(100vh - 94px);
+
+    padding:55px 7%;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(5,5,5,.55),
+        rgba(5,5,5,.94)
+      ),
+      url("queen-reference.png") center/cover no-repeat;
+  }
+
+  .hero h1{
+    font-size:52px;
+    letter-spacing:-3px;
+  }
+
+  .hero p{
+    font-size:14px;
+  }
+
+  .page{
+    padding:75px 7%;
+    min-height:auto;
+  }
+
+  .title{
+    font-size:34px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .row{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    padding:20px;
+  }
+
+  .btn{
+    width:100%;
+    text-align:center;
+  }
+
+}
+
+/* =========================
+   SMALL PHONE
+========================= */
+
+@media(max-width:430px){
+
+  .hero h1{
+    font-size:43px;
+  }
+
+  .eyebrow{
+    letter-spacing:4px;
+    font-size:10px;
+  }
+
+  .hero{
+    padding-left:6%;
+    padding-right:6%;
+  }
+
+  .page{
+    padding-left:6%;
+    padding-right:6%;
+  }
+
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     NAV
+========================= -->
+
+<aside class="side">
+
+  <div class="logo">
+    CONQUER
+    <small>ODIN · VALHALLA RISING</small>
+  </div>
+
+  <nav class="menu">
+
+```
+<a class="on" data-page="home">메인</a>
+
+<a data-page="guild">길드 소개</a>
+
+<a data-page="recruit">길드원 모집</a>
+
+<a data-page="proof">인증게시판</a>
+
+<a data-page="boss">보스 시간표</a>
+
+<a data-page="members">길드원</a>
+
+<a data-page="community">커뮤니티</a>
+
+<a data-page="admin">🔐 관리자</a>
+```
+
+  </nav>
+
+  <button class="join" onclick="openJoin()">
+    가입 신청
+  </button>
+
+</aside>
+
+<main>
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section id="home" class="hero">
+
+  <div class="hero-content">
+
+```
+<div class="eyebrow">
+  CONQUER GUILD
+</div>
+
+<h1>
+  최악의 나쁜놈들이<br>
+  <span>최강</span>이 된다.
+</h1>
+
+<p>
+  우리 편에게는 끈끈하게.<br>
+  전장에서는 물러서지 않게.<br>
+  함께 싸우고 성장할 전사를 기다립니다.
+</p>
+
+<div class="hero-buttons">
+
+  <button class="btn" onclick="openJoin()">
+    ⚔ 가입 신청
+  </button>
+
+  <button class="btn dark" onclick="scrollToSection('guild')">
+    길드 알아보기
+  </button>
+
+</div>
+```
+
+  </div>
+
+</section>
+
+<!-- =========================
+     GUILD
+========================= -->
+
+<section id="guild" class="page">
+
+  <h1 class="title">
+    길드 소개
+  </h1>
+
+  <p class="sub">
+    컨커르는 강함만큼 사람과 함께하는 것을 중요하게 생각합니다.
+  </p>
+
+  <div class="cards">
+
+```
+<div class="card">
+  <h3>⚔ 함께 싸우는 길드</h3>
+  <p>
+    보스와 전장에서 서로 믿고 움직입니다.
+    혼자보다 함께할 때 더 강해지는 길드를 지향합니다.
+  </p>
+</div>
+
+<div class="card">
+  <h3>🔥 함께 성장</h3>
+  <p>
+    득템과 성장을 함께 기록하고 공유합니다.
+    서로의 성장을 도와주는 길드를 만들어갑니다.
+  </p>
+</div>
+
+<div class="card">
+  <h3>🩸 확실한 매너</h3>
+  <p>
+    길드원에게는 기본적인 존중을 지킵니다.
+    오래 함께할 수 있는 분위기를 중요하게 생각합니다.
+  </p>
+</div>
+```
+
+  </div>
+
+</section>
+
+<!-- =========================
+     RECRUIT
+========================= -->
+
+<section id="recruit" class="page">
+
+  <h1 class="title">
+    길드원 모집
+  </h1>
+
+  <p class="sub">
+    컨커르와 오래 함께할 전사를 모집합니다.
+  </p>
+
+  <div class="card">
+
+```
+<h3>
+  모집 기준
+</h3>
+
+<ul>
+  <li>보스 및 길드 활동에 적극적인 분</li>
+  <li>길드원 간 기본 매너를 지키는 분</li>
+  <li>함께 성장할 의지가 있는 분</li>
+</ul>
+
+<button class="submit" onclick="openJoin()">
+  가입 신청하기
+</button>
+```
+
+  </div>
+
+</section>
+
+<!-- =========================
+     PROOF
+========================= -->
+
+<section id="proof" class="page">
+
+  <h1 class="title">
+    인증게시판
+  </h1>
+
+  <p class="sub">
+    길드원들의 기록과 활동을 공유하는 공간입니다.
+  </p>
+
+  <div id="posts" class="cards"></div>
+
+</section>
+
+<!-- =========================
+     BOSS
+========================= -->
+
+<section id="boss" class="page">
+
+  <h1 class="title">
+    보스 시간표
+  </h1>
+
+  <p class="sub">
+    운영진이 관리하는 보스 일정
+  </p>
+
+  <div class="table">
+
+```
+<table>
+
+  <tr>
+    <th>보스</th>
+    <th>주기</th>
+    <th>예정 시간</th>
+  </tr>
+
+  <tr>
+    <td>2챕 요툰하임</td>
+    <td>12시간</td>
+    <td>관리자 입력</td>
+  </tr>
+
+  <tr>
+    <td>3챕 니다벨리르</td>
+    <td>12시간</td>
+    <td>관리자 입력</td>
+  </tr>
+
+  <tr>
+    <td>4챕 알브하임</td>
+    <td>24시간</td>
+    <td>관리자 입력</td>
+  </tr>
+
+  <tr>
+    <td>5챕 무스펠하임</td>
+    <td>36시간</td>
+    <td>관리자 입력</td>
+  </tr>
+
+  <tr>
+    <td>6챕 아스가르드</td>
+    <td>48시간</td>
+    <td>관리자 입력</td>
+  </tr>
+
+  <tr>
+    <td>7챕 드라우그</td>
+    <td>60시간</td>
+    <td>관리자 입력</td>
+  </tr>
+
+  <tr>
+    <td>절대자</td>
+    <td>72시간</td>
+    <td>관리자 입력</td>
+  </tr>
+
+</table>
+```
+
+  </div>
+
+</section>
+
+<!-- =========================
+     MEMBERS
+========================= -->
+
+<section id="members" class="page">
+
+  <h1 class="title">
+    길드원
+  </h1>
+
+  <p class="sub">
+    승인된 길드원만 표시됩니다.
+  </p>
+
+  <div id="membersList" class="cards"></div>
+
+</section>
+
+<!-- =========================
+     COMMUNITY
+========================= -->
+
+<section id="community" class="page">
+
+  <h1 class="title">
+    커뮤니티
+  </h1>
+
+  <p class="sub">
+    컨커르 길드 커뮤니티
+  </p>
+
+  <div class="cards">
+
+```
+<div class="card">
+  <h3>💬 오픈톡</h3>
+  <p>
+    가입 문의와 공지를 확인하세요.
+  </p>
+</div>
+
+<div class="card">
+  <h3>🎧 디스코드</h3>
+  <p>
+    보스 레이드 실시간 소통.
+  </p>
+</div>
+
+<div class="card">
+  <h3>🛡 길드 규칙</h3>
+  <p>
+    함께 지켜갈 기본 약속.
+  </p>
+</div>
+```
+
+  </div>
+
+</section>
+
+<!-- =========================
+     ADMIN
+========================= -->
+
+<section id="admin" class="page">
+
+  <h1 class="title">
+    관리자 센터
+  </h1>
+
+  <p class="sub">
+    가입 신청과 게시판을 관리합니다.
+  </p>
+
+  <div id="adminArea"></div>
+
+</section>
+
+</main>
+
+<!-- =========================
+     JOIN MODAL
+========================= -->
+
+<div class="modal" id="joinModal">
+
+  <div class="box">
+
+```
+<button
+  onclick="closeJoin()"
+  style="float:right;background:none;border:0;color:#aaa;font-size:24px"
+>
+  ×
+</button>
+
+<h2>
+  CONQUER 가입 신청
+</h2>
+
+<div class="row">
+
+  <div>
+    <label>게임 닉네임</label>
+    <input id="nick">
+  </div>
+
+  <div>
+    <label>클래스</label>
+    <input id="cls">
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div>
+    <label>전투력</label>
+    <input id="power">
+  </div>
+
+  <div>
+    <label>주 활동 시간</label>
+    <input id="hours">
+  </div>
+
+</div>
+
+<label>
+  자기소개
+</label>
+
+<textarea id="intro" rows="4"></textarea>
+
+<button class="submit" onclick="submitJoin()">
+  가입 신청 보내기
+</button>
+```
+
+  </div>
+
+</div>
+
+<!-- =========================
+     LOGIN MODAL
+========================= -->
+
+<div class="modal" id="loginModal">
+
+  <div class="box">
+
+```
+<button
+  onclick="closeLogin()"
+  style="float:right;background:none;border:0;color:#aaa;font-size:24px"
+>
+  ×
+</button>
+
+<h2>
+  관리자 로그인
+</h2>
+
+<label>
+  아이디
+</label>
+
+<input id="adminId">
+
+<label>
+  비밀번호
+</label>
+
+<input
+  id="adminPw"
+  type="password"
+>
+
+<button class="submit" onclick="login()">
+  로그인
+</button>
+```
+
+  </div>
+
+</div>
+
 <script>
-const $=s=>document.querySelector(s), pages=[...document.querySelectorAll('.page')],links=[...document.querySelectorAll('.menu a')];
-function show(id){pages.forEach(p=>p.classList.toggle('on',p.id===id));links.forEach(a=>a.classList.toggle('on',a.dataset.page===id));scrollTo(0,0);if(id==='members')loadMembers();if(id==='proof')loadPosts();if(id==='admin')loadAdmin();}
-links.forEach(a=>a.onclick=async()=>{if(a.dataset.page==='admin'){const m=await fetch('/api/admin/me').then(r=>r.json());if(!m.authenticated)return $('#loginModal').classList.add('show')}show(a.dataset.page)});
-function openJoin(){$('#joinModal').classList.add('show')}function closeJoin(){$('#joinModal').classList.remove('show')}function closeLogin(){$('#loginModal').classList.remove('show')}
-async function submitJoin(){const body={nick:$('#nick').value,cls:$('#cls').value,power:$('#power').value,hours:$('#hours').value,intro:$('#intro').value};const r=await fetch('/api/applications',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const d=await r.json();if(!r.ok)return alert(d.error||'신청 실패');alert(d.message);closeJoin()}
-async function login(){const r=await fetch('/api/admin/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:$('#adminId').value,password:$('#adminPw').value})});const d=await r.json();if(!r.ok)return alert(d.error);closeLogin();show('admin')}
-async function loadMembers(){const a=await fetch('/api/members').then(r=>r.json());$('#membersList').innerHTML=a.map(x=>`<div class="card"><h3>${esc(x.nick)}</h3><p>${esc(x.cls||'클래스 미입력')} · ${esc(x.power||'전투력 미입력')}</p></div>`).join('')||'<div class="notice">아직 승인된 길드원이 없습니다.</div>'}
-async function loadPosts(){const a=await fetch('/api/posts').then(r=>r.json());$('#posts').innerHTML=a.map(x=>`<div class="card"><h3>${esc(x.title)}</h3><p>${esc(x.body)}</p><small>${esc(x.author)}</small></div>`).join('')||'<div class="notice">등록된 게시글이 없습니다.</div>'}
-async function loadAdmin(){const a=await fetch('/api/applications').then(r=>r.json());$('#adminArea').innerHTML=`<div class="table"><table><tr><th>닉네임</th><th>클래스</th><th>전투력</th><th>신청일</th><th>상태</th><th>관리</th></tr>${a.map(x=>`<tr><td>${esc(x.nick)}</td><td>${esc(x.cls)}</td><td>${esc(x.power)}</td><td>${esc(x.created_at)}</td><td>${esc(x.status)}</td><td class="admin-actions">${x.status==='PENDING'?`<button onclick="decision(${x.id},'APPROVED')">승인</button> <button class="reject" onclick="decision(${x.id},'REJECTED')">거절</button>`:'처리완료'}</td></tr>`).join('')}</table></div><br><button class="btn dark" onclick="logout()">관리자 로그아웃</button>`}
-async function decision(id,status){const r=await fetch('/api/applications/'+id+'/decision',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({status})});if(!r.ok)return alert('처리 실패');loadAdmin()}
-async function logout(){await fetch('/api/admin/logout',{method:'POST'});show('home')}
-function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
-</script></body></html>
+
+const $ = s => document.querySelector(s);
+
+const pages = [
+  ...document.querySelectorAll('.page')
+];
+
+const links = [
+  ...document.querySelectorAll('.menu a')
+];
+
+/* =========================
+   SECTION SCROLL
+========================= */
+
+function scrollToSection(id){
+
+  const el = document.getElementById(id);
+
+  if(el){
+
+    el.scrollIntoView({
+      behavior:'smooth',
+      block:'start'
+    });
+
+  }
+
+}
+
+/* =========================
+   MENU
+========================= */
+
+function show(id){
+
+  const el = document.getElementById(id);
+
+  if(!el) return;
+
+  el.scrollIntoView({
+    behavior:'smooth',
+    block:'start'
+  });
+
+  links.forEach(a =>
+    a.classList.toggle(
+      'on',
+      a.dataset.page === id
+    )
+  );
+
+  if(id === 'members') loadMembers();
+
+  if(id === 'proof') loadPosts();
+
+  if(id === 'admin') loadAdmin();
+
+}
+
+/* =========================
+   MENU CLICK
+========================= */
+
+links.forEach(a => {
+
+  a.onclick = async () => {
+
+    if(a.dataset.page === 'admin'){
+
+      try{
+
+        const m = await fetch('/api/admin/me')
+          .then(r => r.json());
+
+        if(!m.authenticated){
+
+          $('#loginModal')
+            .classList.add('show');
+
+          return;
+
+        }
+
+      }catch(e){
+
+        alert('관리자 서버에 연결할 수 없습니다.');
+
+        return;
+
+      }
+
+    }
+
+    show(a.dataset.page);
+
+  };
+
+});
+
+/* =========================
+   JOIN
+========================= */
+
+function openJoin(){
+
+  $('#joinModal')
+    .classList.add('show');
+
+}
+
+function closeJoin(){
+
+  $('#joinModal')
+    .classList.remove('show');
+
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+function closeLogin(){
+
+  $('#loginModal')
+    .classList.remove('show');
+
+}
+
+/* =========================
+   JOIN SUBMIT
+========================= */
+
+async function submitJoin(){
+
+  const body = {
+
+    nick:$('#nick').value,
+
+    cls:$('#cls').value,
+
+    power:$('#power').value,
+
+    hours:$('#hours').value,
+
+    intro:$('#intro').value
+
+  };
+
+  try{
+
+    const r = await fetch(
+      '/api/applications',
+      {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(body)
+      }
+    );
+
+    const d = await r.json();
+
+    if(!r.ok){
+
+      return alert(
+        d.error || '신청 실패'
+      );
+
+    }
+
+    alert(d.message);
+
+    closeJoin();
+
+  }catch(e){
+
+    alert(
+      '현재 가입 신청 서버가 연결되어 있지 않습니다.'
+    );
+
+  }
+
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+async function login(){
+
+  try{
+
+    const r = await fetch(
+      '/api/admin/login',
+      {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+
+          id:$('#adminId').value,
+
+          password:$('#adminPw').value
+
+        })
+      }
+    );
+
+    const d = await r.json();
+
+    if(!r.ok){
+
+      return alert(
+        d.error || '로그인 실패'
+      );
+
+    }
+
+    closeLogin();
+
+    show('admin');
+
+  }catch(e){
+
+    alert(
+      '관리자 서버가 연결되어 있지 않습니다.'
+    );
+
+  }
+
+}
+
+/* =========================
+   MEMBERS
+========================= */
+
+async function loadMembers(){
+
+  try{
+
+    const a = await fetch(
+      '/api/members'
+    ).then(r => r.json());
+
+    $('#membersList').innerHTML =
+
+      a.map(x => `
+
+        <div class="card">
+
+          <h3>
+            ${esc(x.nick)}
+          </h3>
+
+          <p>
+            ${esc(x.cls || '클래스 미입력')}
+            ·
+            ${esc(x.power || '전투력 미입력')}
+          </p>
+
+        </div>
+
+      `).join('')
+
+      ||
+
+      '<div class="notice">아직 승인된 길드원이 없습니다.</div>';
+
+  }catch(e){
+
+    $('#membersList').innerHTML =
+      '<div class="notice">길드원 정보를 불러올 수 없습니다.</div>';
+
+  }
+
+}
+
+/* =========================
+   POSTS
+========================= */
+
+async function loadPosts(){
+
+  try{
+
+    const a = await fetch(
+      '/api/posts'
+    ).then(r => r.json());
+
+    $('#posts').innerHTML =
+
+      a.map(x => `
+
+        <div class="card">
+
+          <h3>
+            ${esc(x.title)}
+          </h3>
+
+          <p>
+            ${esc(x.body)}
+          </p>
+
+          <small>
+            ${esc(x.author)}
+          </small>
+
+        </div>
+
+      `).join('')
+
+      ||
+
+      '<div class="notice">등록된 게시글이 없습니다.</div>';
+
+  }catch(e){
+
+    $('#posts').innerHTML =
+      '<div class="notice">게시판 서버가 연결되어 있지 않습니다.</div>';
+
+  }
+
+}
+
+/* =========================
+   ADMIN
+========================= */
+
+async function loadAdmin(){
+
+  try{
+
+    const a = await fetch(
+      '/api/applications'
+    ).then(r => r.json());
+
+    $('#adminArea').innerHTML = `
+
+      <div class="table">
+
+        <table>
+
+          <tr>
+
+            <th>닉네임</th>
+
+            <th>클래스</th>
+
+            <th>전투력</th>
+
+            <th>신청일</th>
+
+            <th>상태</th>
+
+            <th>관리</th>
+
+          </tr>
+
+          ${a.map(x => `
+
+            <tr>
+
+              <td>${esc(x.nick)}</td>
+
+              <td>${esc(x.cls)}</td>
+
+              <td>${esc(x.power)}</td>
+
+              <td>${esc(x.created_at)}</td>
+
+              <td>${esc(x.status)}</td>
+
+              <td class="admin-actions">
+
+                ${
+                  x.status === 'PENDING'
+
+                  ?
+
+                  `
+                  <button
+                    onclick="decision(${x.id},'APPROVED')"
+                  >
+                    승인
+                  </button>
+
+                  <button
+                    class="reject"
+                    onclick="decision(${x.id},'REJECTED')"
+                  >
+                    거절
+                  </button>
+                  `
+
+                  :
+
+                  '처리완료'
+                }
+
+              </td>
+
+            </tr>
+
+          `).join('')}
+
+        </table>
+
+      </div>
+
+      <br>
+
+      <button
+        class="btn dark"
+        onclick="logout()"
+      >
+        관리자 로그아웃
+      </button>
+
+    `;
+
+  }catch(e){
+
+    $('#adminArea').innerHTML =
+      '<div class="notice">관리자 서버가 연결되어 있지 않습니다.</div>';
+
+  }
+
+}
+
+/* =========================
+   DECISION
+========================= */
+
+async function decision(id,status){
+
+  try{
+
+    const r = await fetch(
+      '/api/applications/' + id + '/decision',
+      {
+        method:'POST',
+
+        headers:{
+          'Content-Type':'application/json'
+        },
+
+        body:JSON.stringify({
+          status
+        })
+
+      }
+    );
+
+    if(!r.ok){
+
+      return alert(
+        '처리 실패'
+      );
+
+    }
+
+    loadAdmin();
+
+  }catch(e){
+
+    alert(
+      '서버에 연결할 수 없습니다.'
+    );
+
+  }
+
+}
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logout(){
+
+  try{
+
+    await fetch(
+      '/api/admin/logout',
+      {
+        method:'POST'
+      }
+    );
+
+  }catch(e){}
+
+  show('home');
+
+}
+
+/* =========================
+   ESCAPE
+========================= */
+
+function esc(s){
+
+  return String(s ?? '')
+    .replace(
+      /[&<>"']/g,
+      c => ({
+
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#039;'
+
+      }[c])
+    );
+
+}
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+window.addEventListener(
+  'click',
+  e => {
+
+    if(e.target === $('#joinModal')){
+
+      closeJoin();
+
+    }
+
+    if(e.target === $('#loginModal')){
+
+      closeLogin();
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
