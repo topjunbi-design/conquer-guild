@@ -1076,7 +1076,7 @@ function closePost(){
 
 }
 
-async function submitPost(){
+function submitPost(){
 
   const title = $('#postTitle').value.trim();
   const author = $('#postAuthor').value.trim();
@@ -1090,46 +1090,38 @@ async function submitPost(){
 
   }
 
-  try{
-
-    const r = await fetch(
-      '/api/posts',
-      {
-        method:'POST',
-        headers:{
-          'Content-Type':'application/json'
-        },
-        body:JSON.stringify({
-          title,
-          author,
-          body
-        })
-      }
+  const posts =
+    JSON.parse(
+      localStorage.getItem('conquerPosts') || '[]'
     );
 
-    if(!r.ok){
+  posts.unshift({
 
-      throw new Error();
+    title: title,
 
-    }
+    author: author || '익명',
 
-    alert('게시글이 등록되었습니다.');
+    body: body,
 
-    $('#postTitle').value = '';
-    $('#postAuthor').value = '';
-    $('#postBody').value = '';
+    created_at:
+      new Date().toLocaleString('ko-KR')
 
-    closePost();
+  });
 
-    loadPosts();
+  localStorage.setItem(
+    'conquerPosts',
+    JSON.stringify(posts)
+  );
 
-  }catch(e){
+  alert('게시글이 등록되었습니다.');
 
-    alert(
-      '현재 게시판 서버가 연결되어 있지 않습니다.'
-    );
+  $('#postTitle').value = '';
+  $('#postAuthor').value = '';
+  $('#postBody').value = '';
 
-  }
+  closePost();
+
+  loadPosts();
 
 }
 
