@@ -221,7 +221,7 @@ main{
 ========================= */
 
 .page{
-  display:block;
+  display:none;
   padding:100px 8%;
   min-height:70vh;
 
@@ -1018,17 +1018,38 @@ function scrollToSection(id){
    MENU
 ========================= */
 
-function show(id){
+  function show(id){
+
+  const sections = document.querySelectorAll('main > section');
+
+  sections.forEach(section => {
+    section.style.display = 'none';
+  });
 
   const el = document.getElementById(id);
 
   if(!el) return;
 
-  el.scrollIntoView({
-    behavior:'smooth',
-    block:'start'
-  });
+  if(id === 'home'){
+    el.style.display = 'flex';
+  }else{
+    el.style.display = 'block';
+  }
 
+  links.forEach(a =>
+    a.classList.toggle(
+      'on',
+      a.dataset.page === id
+    )
+  );
+
+  if(id === 'members') loadMembers();
+
+  if(id === 'proof') loadPosts();
+
+  if(id === 'admin') loadAdmin();
+
+}
   links.forEach(a =>
     a.classList.toggle(
       'on',
@@ -1525,7 +1546,7 @@ window.addEventListener(
 
   }
 );
-
+show('home');
 </script>
 
 </body>
