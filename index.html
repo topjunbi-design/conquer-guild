@@ -1018,25 +1018,37 @@ function scrollToSection(id){
    MENU
 ========================= */
 
-  function show(id){
+function show(id){
 
-  const sections = document.querySelectorAll('main > section');
+const sections = document.querySelectorAll('main > section');
 
-  sections.forEach(section => {
-    section.style.display = 'none';
-  });
+sections.forEach(section => {
+section.style.display = 'none';
+});
 
-  const el = document.getElementById(id);
+const el = document.getElementById(id);
 
-  if(!el) return;
+if(!el) return;
 
-  if(id === 'home'){
-    el.style.display = 'flex';
-  }else{
-    el.style.display = 'block';
-  }
+if(id === 'home'){
+el.style.display = 'flex';
+}else{
+el.style.display = 'block';
+}
 
-  links.forEach(a =>
+links.forEach(a => {
+a.classList.toggle(
+'on',
+a.dataset.page === id
+);
+});
+if(id === 'members') loadMembers();
+if(id === 'proof') loadPosts();
+if(id === 'admin') loadAdmin();
+
+}
+
+   links.forEach(a =>
     a.classList.toggle(
       'on',
       a.dataset.page === id
