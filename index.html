@@ -1288,51 +1288,42 @@ async function loadMembers(){
    POSTS
 ========================= */
 
-async function loadPosts(){
+function loadPosts(){
 
-  try{
+  const a =
+    JSON.parse(
+      localStorage.getItem('conquerPosts') || '[]'
+    );
 
-    const r = await fetch('/api/posts');
+  $('#posts').innerHTML =
 
-    if(!r.ok) throw new Error();
+    a.map(x => `
 
-    const a = await r.json();
+      <div class="card">
 
-    $('#posts').innerHTML =
+        <h3>
+          ${esc(x.title)}
+        </h3>
 
-      a.map(x => `
+        <p>
+          ${esc(x.body)}
+        </p>
 
-        <div class="card">
+        <small>
+          작성자: ${esc(x.author || '익명')}
+          ·
+          ${esc(x.created_at || '')}
+        </small>
 
-          <h3>
-            ${esc(x.title)}
-          </h3>
+      </div>
 
-          <p>
-            ${esc(x.body)}
-          </p>
+    `).join('')
 
-          <small>
-            ${esc(x.author || '익명')}
-          </small>
+    ||
 
-        </div>
-
-      `).join('')
-
-      ||
-
-      '<div class="notice">등록된 게시글이 없습니다.</div>';
-
-  }catch(e){
-
-    $('#posts').innerHTML =
-      '<div class="notice">게시판 서버가 연결되어 있지 않습니다.</div>';
-
-  }
+    '<div class="notice">등록된 게시글이 없습니다.</div>';
 
 }
-
 /* =========================
    ADMIN
 ========================= */
