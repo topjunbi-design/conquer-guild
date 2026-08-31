@@ -217,13 +217,13 @@ main{
 }
 
 /* =========================
-   SECTIONS
+   PAGES
 ========================= */
 
 .page{
   display:none;
   padding:100px 8%;
-  min-height:70vh;
+  min-height:calc(100vh - 72px);
 
   border-bottom:1px solid var(--line);
   scroll-margin-top:72px;
@@ -481,7 +481,7 @@ textarea{
 
   .page{
     padding:75px 7%;
-    min-height:auto;
+    min-height:calc(100vh - 94px);
   }
 
   .title{
@@ -539,10 +539,6 @@ textarea{
 
 <body>
 
-<!-- =========================
-     NAV
-========================= -->
-
 <aside class="side">
 
   <div class="logo">
@@ -554,19 +550,12 @@ textarea{
 
 ```
 <a class="on" data-page="home">메인</a>
-
 <a data-page="guild">길드 소개</a>
-
 <a data-page="recruit">길드원 모집</a>
-
 <a data-page="proof">인증게시판</a>
-
 <a data-page="boss">보스 시간표</a>
-
 <a data-page="members">길드원</a>
-
 <a data-page="community">커뮤니티</a>
-
 <a data-page="admin">🔐 관리자</a>
 ```
 
@@ -579,10 +568,6 @@ textarea{
 </aside>
 
 <main>
-
-<!-- =========================
-     HOME
-========================= -->
 
 <section id="home" class="hero">
 
@@ -610,7 +595,7 @@ textarea{
     ⚔ 가입 신청
   </button>
 
-  <button class="btn dark" onclick="scrollToSection('guild')">
+  <button class="btn dark" onclick="show('guild')">
     길드 알아보기
   </button>
 
@@ -620,10 +605,6 @@ textarea{
   </div>
 
 </section>
-
-<!-- =========================
-     GUILD
-========================= -->
 
 <section id="guild" class="page">
 
@@ -667,10 +648,6 @@ textarea{
 
 </section>
 
-<!-- =========================
-     RECRUIT
-========================= -->
-
 <section id="recruit" class="page">
 
   <h1 class="title">
@@ -703,10 +680,6 @@ textarea{
 
 </section>
 
-<!-- =========================
-     PROOF
-========================= -->
-
 <section id="proof" class="page">
 
   <h1 class="title">
@@ -717,13 +690,13 @@ textarea{
     길드원들의 기록과 활동을 공유하는 공간입니다.
   </p>
 
-  <div id="posts" class="cards"></div>
+  <button class="submit" onclick="openPost()">
+    ＋ 글쓰기
+  </button>
+
+  <div id="posts" class="cards" style="margin-top:20px;"></div>
 
 </section>
-
-<!-- =========================
-     BOSS
-========================= -->
 
 <section id="boss" class="page">
 
@@ -795,10 +768,6 @@ textarea{
 
 </section>
 
-<!-- =========================
-     MEMBERS
-========================= -->
-
 <section id="members" class="page">
 
   <h1 class="title">
@@ -812,10 +781,6 @@ textarea{
   <div id="membersList" class="cards"></div>
 
 </section>
-
-<!-- =========================
-     COMMUNITY
-========================= -->
 
 <section id="community" class="page">
 
@@ -856,10 +821,6 @@ textarea{
 
 </section>
 
-<!-- =========================
-     ADMIN
-========================= -->
-
 <section id="admin" class="page">
 
   <h1 class="title">
@@ -875,10 +836,6 @@ textarea{
 </section>
 
 </main>
-
-<!-- =========================
-     JOIN MODAL
-========================= -->
 
 <div class="modal" id="joinModal">
 
@@ -939,9 +896,48 @@ textarea{
 
 </div>
 
-<!-- =========================
-     LOGIN MODAL
-========================= -->
+<div class="modal" id="postModal">
+
+  <div class="box">
+
+```
+<button
+  onclick="closePost()"
+  style="float:right;background:none;border:0;color:#aaa;font-size:24px"
+>
+  ×
+</button>
+
+<h2>
+  인증게시판 글쓰기
+</h2>
+
+<label>
+  제목
+</label>
+
+<input id="postTitle">
+
+<label>
+  작성자
+</label>
+
+<input id="postAuthor">
+
+<label>
+  내용
+</label>
+
+<textarea id="postBody" rows="7"></textarea>
+
+<button class="submit" onclick="submitPost()">
+  게시글 등록
+</button>
+```
+
+  </div>
+
+</div>
 
 <div class="modal" id="loginModal">
 
@@ -987,98 +983,50 @@ textarea{
 
 const $ = s => document.querySelector(s);
 
-const pages = [
-  ...document.querySelectorAll('.page')
-];
-
 const links = [
   ...document.querySelectorAll('.menu a')
 ];
 
 /* =========================
-   SECTION SCROLL
-========================= */
-
-function scrollToSection(id){
-
-  const el = document.getElementById(id);
-
-  if(el){
-
-    el.scrollIntoView({
-      behavior:'smooth',
-      block:'start'
-    });
-
-  }
-
-}
-
-/* =========================
-   MENU
+   PAGE SHOW
 ========================= */
 
 function show(id){
 
-const sections = document.querySelectorAll('main > section');
+  const sections = document.querySelectorAll('main > section');
 
-sections.forEach(section => {
-section.style.display = 'none';
-});
+  sections.forEach(section => {
+    section.style.display = 'none';
+  });
 
-const el = document.getElementById(id);
+  const el = document.getElementById(id);
 
-if(!el) return;
+  if(!el) return;
 
-if(id === 'home'){
-el.style.display = 'flex';
-}else{
-el.style.display = 'block';
-}
+  if(id === 'home'){
+    el.style.display = 'flex';
+  }else{
+    el.style.display = 'block';
+  }
 
-links.forEach(a => {
-a.classList.toggle(
-'on',
-a.dataset.page === id
-);
-});
-if(id === 'members') loadMembers();
-if(id === 'proof') loadPosts();
-if(id === 'admin') loadAdmin();
-
-}
-links.forEach(a => {
-a.classList.toggle(
-'on',
-a.dataset.page === id
-);
-});
-   links.forEach(a =>
+  links.forEach(a => {
     a.classList.toggle(
       'on',
       a.dataset.page === id
-    )
-  );
+    );
+  });
 
-  if(id === 'members') loadMembers();
+  if(id === 'members'){
+    loadMembers();
+  }
 
-  if(id === 'proof') loadPosts();
+  if(id === 'proof'){
+    loadPosts();
+  }
 
-  if(id === 'admin') loadAdmin();
-
-}
-  links.forEach(a =>
-    a.classList.toggle(
-      'on',
-      a.dataset.page === id
-    )
-  );
-
-  if(id === 'members') loadMembers();
-
-  if(id === 'proof') loadPosts();
-
-  if(id === 'admin') loadAdmin();
+  if(id === 'admin'){
+    loadAdmin();
+  }
 
 }
 
@@ -1086,7 +1034,7 @@ a.dataset.page === id
    MENU CLICK
 ========================= */
 
-  links.forEach(a => {
+links.forEach(a => {
 
   a.onclick = () => {
 
@@ -1095,33 +1043,93 @@ a.dataset.page === id
   };
 
 });
-  
+
 /* =========================
    JOIN
 ========================= */
 
 function openJoin(){
 
-  $('#joinModal')
-    .classList.add('show');
+  $('#joinModal').classList.add('show');
 
 }
 
 function closeJoin(){
 
-  $('#joinModal')
-    .classList.remove('show');
+  $('#joinModal').classList.remove('show');
 
 }
 
 /* =========================
-   LOGIN
+   POST
 ========================= */
 
-function closeLogin(){
+function openPost(){
 
-  $('#loginModal')
-    .classList.remove('show');
+  $('#postModal').classList.add('show');
+
+}
+
+function closePost(){
+
+  $('#postModal').classList.remove('show');
+
+}
+
+async function submitPost(){
+
+  const title = $('#postTitle').value.trim();
+  const author = $('#postAuthor').value.trim();
+  const body = $('#postBody').value.trim();
+
+  if(!title || !body){
+
+    alert('제목과 내용을 입력해주세요.');
+
+    return;
+
+  }
+
+  try{
+
+    const r = await fetch(
+      '/api/posts',
+      {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          title,
+          author,
+          body
+        })
+      }
+    );
+
+    if(!r.ok){
+
+      throw new Error();
+
+    }
+
+    alert('게시글이 등록되었습니다.');
+
+    $('#postTitle').value = '';
+    $('#postAuthor').value = '';
+    $('#postBody').value = '';
+
+    closePost();
+
+    loadPosts();
+
+  }catch(e){
+
+    alert(
+      '현재 게시판 서버가 연결되어 있지 않습니다.'
+    );
+
+  }
 
 }
 
@@ -1186,6 +1194,12 @@ async function submitJoin(){
    LOGIN
 ========================= */
 
+function closeLogin(){
+
+  $('#loginModal').classList.remove('show');
+
+}
+
 async function login(){
 
   try{
@@ -1239,9 +1253,11 @@ async function loadMembers(){
 
   try{
 
-    const a = await fetch(
-      '/api/members'
-    ).then(r => r.json());
+    const r = await fetch('/api/members');
+
+    if(!r.ok) throw new Error();
+
+    const a = await r.json();
 
     $('#membersList').innerHTML =
 
@@ -1284,9 +1300,11 @@ async function loadPosts(){
 
   try{
 
-    const a = await fetch(
-      '/api/posts'
-    ).then(r => r.json());
+    const r = await fetch('/api/posts');
+
+    if(!r.ok) throw new Error();
+
+    const a = await r.json();
 
     $('#posts').innerHTML =
 
@@ -1303,7 +1321,7 @@ async function loadPosts(){
           </p>
 
           <small>
-            ${esc(x.author)}
+            ${esc(x.author || '익명')}
           </small>
 
         </div>
@@ -1516,7 +1534,7 @@ function esc(s){
 }
 
 /* =========================
-   CLOSE MODAL
+   CLOSE MODALS
 ========================= */
 
 window.addEventListener(
@@ -1529,6 +1547,12 @@ window.addEventListener(
 
     }
 
+    if(e.target === $('#postModal')){
+
+      closePost();
+
+    }
+
     if(e.target === $('#loginModal')){
 
       closeLogin();
@@ -1537,7 +1561,13 @@ window.addEventListener(
 
   }
 );
+
+/* =========================
+   INITIAL PAGE
+========================= */
+
 show('home');
+
 </script>
 
 </body>
